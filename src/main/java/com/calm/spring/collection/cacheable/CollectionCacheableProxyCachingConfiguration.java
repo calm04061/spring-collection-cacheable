@@ -1,4 +1,4 @@
-package com.example.springcollectioncacheable;
+package com.calm.spring.collection.cacheable;
 
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -34,7 +34,7 @@ public class CollectionCacheableProxyCachingConfiguration extends AbstractCachin
 
     @Bean
     public CacheInterceptor collectionCacheInterceptor() {
-        CacheInterceptor interceptor = new CollectionCacheableCacheInterceptor();
+        CacheInterceptor interceptor = new CollectionCacheInterceptor();
         interceptor.configure(this.errorHandler, this.keyGenerator, this.cacheResolver, this.cacheManager);
         interceptor.setCacheOperationSource(cacheOperationSource);
         return interceptor;

@@ -1,4 +1,4 @@
-package com.example.springcollectioncacheable;
+package com.calm.spring.collection.cacheable;
 
 import org.springframework.cache.annotation.AnnotationCacheOperationSource;
 

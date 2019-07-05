@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.springcollectioncacheable;
+package com.calm.spring.collection.cacheable;
 
 import org.springframework.cache.interceptor.CachePutOperation;
 
