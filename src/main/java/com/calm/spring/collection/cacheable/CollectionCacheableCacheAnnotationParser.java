@@ -23,7 +23,6 @@ import org.springframework.cache.annotation.CacheAnnotationParser;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.cache.interceptor.CacheOperation;
-import org.springframework.cache.interceptor.CachePutOperation;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
