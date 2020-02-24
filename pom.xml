@@ -41,12 +41,12 @@
     </dependencies>
     <distributionManagement>
         <repository>
-            <id>rdc-releases</id>
-            <url>https://repo.rdc.aliyun.com/repository/73290-release-NxB5WQ/</url>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/calm04061/</url>
         </repository>
         <snapshotRepository>
-            <id>rdc-snapshots</id>
-            <url>https://repo.rdc.aliyun.com/repository/73290-snapshot-c2V5W5/</url>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/calm04061/</url>
         </snapshotRepository>
     </distributionManagement>
     <dependencyManagement>
