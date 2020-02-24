@@ -14,5 +14,8 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: cat /home/runner/.m2/settings.xml
+      env:
+        GITHUB_ACTOR: calm04061
+        GITHUB_TOKEN: ${{ secrets.GITHUB_MAVEN_TOKEN }}
+      run: cat $GITHUB_TOKEN
 #      run: mvn -B clean deploy --file pom.xml -Dmaven.test.skip
