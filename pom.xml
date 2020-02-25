@@ -5,7 +5,7 @@
     <groupId>com.calm</groupId>
     <artifactId>spring-collection-cacheable</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-collection-cacheable</name>
+    <name>Spring Collection Cache</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

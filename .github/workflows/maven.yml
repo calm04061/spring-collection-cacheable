@@ -16,6 +16,6 @@ jobs:
     - name: Build with Maven
       env:
         GITHUB_ACTOR: calm04061
-        GITHUB_TOKEN: ${{ secrets.GITHUB_MAVEN_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #      run: echo $GITHUB_TOKEN
-      run: mvn -B clean deploy --file pom.xml -Dmaven.test.skip
+#      run: mvn -B clean deploy --file pom.xml -Dmaven.test.skip
