@@ -150,18 +150,18 @@ public class CollectionCacheableCacheAnnotationParser implements CacheAnnotation
 	}
 
 	private CollectionCacheEvictOperation parseCollectionCacheEvictAnnotation(
-			Method method, DefaultCacheConfig defaultConfig, CollectionCacheEvict collectionCacheable) {
+			Method method, DefaultCacheConfig defaultConfig, CollectionCacheEvict collectionCacheEvict) {
 
 		CollectionCacheEvictOperation.Builder builder = new CollectionCacheEvictOperation.Builder();
 
 		builder.setName(method.toString());
-		builder.setCacheNames(collectionCacheable.cacheNames());
-		builder.setCondition(collectionCacheable.condition());
-		builder.setKey(collectionCacheable.key());
-		builder.setKeyGenerator(collectionCacheable.keyGenerator());
-		builder.setCacheManager(collectionCacheable.cacheManager());
-		builder.setCacheResolver(collectionCacheable.cacheResolver());
-
+		builder.setCacheNames(collectionCacheEvict.cacheNames());
+		builder.setCondition(collectionCacheEvict.condition());
+		builder.setKey(collectionCacheEvict.key());
+		builder.setKeyGenerator(collectionCacheEvict.keyGenerator());
+		builder.setCacheManager(collectionCacheEvict.cacheManager());
+		builder.setCacheResolver(collectionCacheEvict.cacheResolver());
+		builder.setCacheWide(collectionCacheEvict.allEntries());
 		defaultConfig.applyDefault(builder);
 		CollectionCacheEvictOperation op = builder.build();
 		validateCollectionCacheEvictOperation(method, op);

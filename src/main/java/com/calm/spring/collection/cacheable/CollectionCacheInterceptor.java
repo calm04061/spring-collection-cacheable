@@ -34,14 +34,16 @@ public class CollectionCacheInterceptor extends CacheInterceptor {
 		if (CollectionUtils.isEmpty(operations)) {
 			return super.execute(invoker, target, method, invocationArgs);
 		}
-		List<CacheOperation> collect = operations.parallelStream().filter(e -> e instanceof CollectionCacheOperation).collect(Collectors.toList());
+		List<CacheOperation> collect = operations.parallelStream().filter(e -> e instanceof CollectionCacheEvictOperation).collect(Collectors.toList());
 		if (!CollectionUtils.isEmpty(collect)) {
 			return handleCollectionCache(collect, targetClass, invoker, target, method, invocationArgs);
 		}
-		collect = operations.parallelStream().filter(e -> e instanceof CollectionCacheEvictOperation).collect(Collectors.toList());
+
+		collect = operations.parallelStream().filter(e -> e instanceof CollectionCacheOperation).collect(Collectors.toList());
 		if (!CollectionUtils.isEmpty(collect)) {
 			return handleCollectionCache(collect, targetClass, invoker, target, method, invocationArgs);
 		}
+
 		collect = operations.parallelStream().filter(e -> e instanceof CollectionCachePutOperation).collect(Collectors.toList());
 		if (!CollectionUtils.isEmpty(collect)) {
 			return handleCollectionCache(collect, targetClass, invoker, target, method, invocationArgs);
@@ -75,9 +77,7 @@ public class CollectionCacheInterceptor extends CacheInterceptor {
 		if (!context.isConditionPassingWithArgument(idsArgument)) {
 			return invokeMethod(invoker);
 		}
-		Iterator<?> idIterator = idsArgument.iterator();
-		while (idIterator.hasNext()) {
-			Object id = idIterator.next();
+		for (Object id : idsArgument) {
 			Object key = context.generateKeyFromSingleArgument(id);
 			for (Cache cache : context.getCaches()) {
 				doEvict(cache, key, true);
@@ -114,13 +114,13 @@ public class CollectionCacheInterceptor extends CacheInterceptor {
 			return uncachedResult;
 		}
 
-		Collection idsArgument = injectCollectionArgument(invocationArgs);
+		Collection<Object> idsArgument = injectCollectionArgument(invocationArgs);
 		if (!context.isConditionPassingWithArgument(idsArgument)) {
 			return invokeMethod(invoker);
 		}
 
 		Map<Object, Object> result = new HashMap<>();
-		Iterator idIterator = idsArgument.iterator();
+		Iterator<Object> idIterator = idsArgument.iterator();
 		while (idIterator.hasNext()) {
 			Object id = idIterator.next();
 			Object key = context.generateKeyFromSingleArgument(id);
@@ -178,9 +178,9 @@ public class CollectionCacheInterceptor extends CacheInterceptor {
 		return null;
 	}
 
-	private Collection injectCollectionArgument(Object[] invocationArgs) {
+	private Collection<Object> injectCollectionArgument(Object[] invocationArgs) {
 		if (invocationArgs.length == 1 && invocationArgs[0] instanceof Collection) {
-			Collection foundCollection = new LinkedList<>((Collection<?>) invocationArgs[0]);
+			Collection<Object> foundCollection = new LinkedList<>((Collection<?>) invocationArgs[0]);
 			invocationArgs[0] = foundCollection;
 			return foundCollection;
 		}
